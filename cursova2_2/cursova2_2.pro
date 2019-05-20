@@ -26,15 +26,18 @@ CONFIG += c++11
 
 SOURCES += \
         daysinfo.cpp \
+        details.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
         daysinfo.h \
+        details.h \
         mainwindow.h
 
 FORMS += \
         daysinfo.ui \
+        details.ui \
         mainwindow.ui
 
 # Default rules for deployment.

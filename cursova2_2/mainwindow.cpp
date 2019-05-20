@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "daysinfo.h"
+#include "details.h"
 #include <QAction>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -9,10 +10,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    this->setStyleSheet("background-image:url(sky-2076868_960_720.jpg)");
+    this->setStyleSheet("background-image:url(fon_svet_polosy_pyatna_odnotonnyy_43981_2560x1440.jpg)");
 
     connect(ui->ButtonToShow5DayInfo, &QPushButton::clicked
             , this,&MainWindow::showDaysInfo);
+
+    connect(ui->ButtonToShowDetails, &QPushButton::clicked
+            , this,&MainWindow::showDetailsInfo);
 
     QPixmap pix("001-snow.png");
     QSize PicSize(50, 50);
@@ -33,4 +37,11 @@ void MainWindow::showDaysInfo()
   DaysInfo lDaysInfo;
   lDaysInfo.setModal(true);
   lDaysInfo.exec();
+}
+
+void MainWindow::showDetailsInfo()
+{
+  Details lDetailsInfo;
+  lDetailsInfo.setModal(true);
+  lDetailsInfo.exec();
 }

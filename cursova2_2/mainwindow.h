@@ -18,6 +18,8 @@ public:
 private slots:
 
     void showDaysInfo();
+    void showDetailsInfo();
+
 private:
     Ui::MainWindow *ui;
 };

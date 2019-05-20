@@ -73,24 +73,11 @@
           <property name="font">
            <font>
             <family>Cambria</family>
-            <pointsize>13</pointsize>
+            <pointsize>14</pointsize>
            </font>
           </property>
           <property name="text">
            <string>Wind strength -</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLabel" name="WindWtrengthInfo_MainForm_3">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>TextLabel</string>
           </property>
          </widget>
         </item>
@@ -99,7 +86,7 @@
           <property name="font">
            <font>
             <family>Cambria</family>
-            <pointsize>13</pointsize>
+            <pointsize>14</pointsize>
            </font>
           </property>
           <property name="text">
@@ -117,6 +104,25 @@
           </property>
           <property name="text">
            <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="WindWtrengthInfo_MainForm_3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <family>Cambria</family>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>3 m/s</string>
           </property>
          </widget>
         </item>
@@ -266,7 +272,7 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QPushButton" name="ButtonToShowDetails_3">
+         <widget class="QPushButton" name="ButtonToShowDetails">
           <property name="font">
            <font>
             <family>Cambria</family>

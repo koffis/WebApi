@@ -5,7 +5,7 @@ DaysInfo::DaysInfo(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DaysInfo)
 {
-
+    this->setStyleSheet("background-image:url(_1962-499.jpg)");
     ui->setupUi(this);
 
     QPixmap pix("001-snow.png");
