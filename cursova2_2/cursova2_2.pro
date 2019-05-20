@@ -25,13 +25,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        daysinfo.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
+        daysinfo.h \
         mainwindow.h
 
 FORMS += \
+        daysinfo.ui \
         mainwindow.ui
 
 # Default rules for deployment.

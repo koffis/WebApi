@@ -15,6 +15,9 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+
+    void showDaysInfo();
 private:
     Ui::MainWindow *ui;
 };
