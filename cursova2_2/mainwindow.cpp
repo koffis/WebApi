@@ -3,6 +3,12 @@
 #include "daysinfo.h"
 #include "details.h"
 #include <QAction>
+#include <QFile>
+#include <QByteArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,11 +39,63 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->mLogoImage->setPixmap(logo);
     ui->mLogoImage->repaint();
     ui->mLogoImage->setPixmap(logo);
+
+    addCountry();
+
+    connect(ui->mChooseCountryComboBx, &QComboBox::currentTextChanged,this,&MainWindow::addAllCities);
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::addCountry()
+{
+    QFile file("city.list.json");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QByteArray jsonData = file.readAll();
+    file.close();
+
+    QJsonDocument document = QJsonDocument::fromJson(jsonData);
+    QJsonObject object = document.object();
+
+    QSet<QString> lCountry;
+    QJsonValue value = object.value("cities");
+    QJsonArray array = value.toArray();
+    foreach (const QJsonValue & v, array)
+         lCountry.insert(v.toObject().value("country").toString());
+
+    for(auto element : lCountry)
+        ui->mChooseCountryComboBx->addItem(element);
+}
+
+void MainWindow::addAllCities(const QString &text)
+{
+    qDebug()<<text;
+    mCountry = text;
+    QFile file("city.list.json");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QByteArray jsonData = file.readAll();
+    file.close();
+
+    QJsonDocument document = QJsonDocument::fromJson(jsonData);
+    QJsonObject object = document.object();
+
+    QSet<QString> lCity;
+    QJsonValue value = object.value("cities");
+    QJsonArray array = value.toArray();
+    foreach (const QJsonValue & v, array)
+    {
+        if(mCountry == v.toObject().value("country").toString())
+        {
+            lCity.insert(v.toObject().value("name").toString());
+        }
+    }
+
+    for(auto element : lCity)
+        ui->mChooseCityComboBox->addItem(element);
 }
 
 void MainWindow::showDaysInfo()
