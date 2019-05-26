@@ -13,12 +13,15 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_6">
       <item>
-       <widget class="QLabel" name="CurrentWeatherText_DontTouch_3">
+       <widget class="QLabel" name="mTextCurrentWeatherLable">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
           <horstretch>0</horstretch>
@@ -47,7 +50,7 @@
       <item>
        <widget class="QLabel" name="CurrentTemperatureMainWindow_3">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
+         <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -57,6 +60,9 @@
           <family>IrisUPC</family>
           <pointsize>70</pointsize>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(255, 235, 235, 206), stop:0.35 rgba(255, 188, 188, 80), stop:0.4 rgba(255, 162, 162, 80), stop:0.425 rgba(255, 132, 132, 156), stop:0.44 rgba(252, 128, 128, 80), stop:1 rgba(255, 255, 255, 0));</string>
         </property>
         <property name="text">
          <string>18 °C</string>
@@ -81,7 +87,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="0">
+        <item row="2" column="0">
          <widget class="QLabel" name="SkyLable_MainForm_3">
           <property name="font">
            <font>
@@ -94,7 +100,7 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
+        <item row="2" column="1">
          <widget class="QLabel" name="SkyInfo_MainForm_3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
@@ -126,6 +132,19 @@
           </property>
          </widget>
         </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="mLogoImage">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string>TextLabel</string>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
      </layout>
@@ -145,7 +164,7 @@
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
         <item row="0" column="1">
-         <widget class="QLabel" name="WorldWeatherText_DonTouch_3">
+         <widget class="QLabel" name="mTextWorldWeatherLable">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -162,6 +181,9 @@
             <underline>false</underline>
             <strikeout>false</strikeout>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>World Weather</string>
@@ -192,7 +214,7 @@
          </spacer>
         </item>
         <item row="3" column="0">
-         <widget class="QLabel" name="CountryLable_MainForm_3">
+         <widget class="QLabel" name="mTextCountryMainWindowLable">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -211,7 +233,7 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QComboBox" name="ChooseCountry_3">
+         <widget class="QComboBox" name="mChooseCountryComboBx">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -227,10 +249,13 @@
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QLabel" name="CityLable_MainForm_3">
+         <widget class="QLabel" name="mTextCityMainWindowLable">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -249,7 +274,7 @@
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QComboBox" name="ChooseCity_3">
+         <widget class="QComboBox" name="mChooseCityComboBox">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
@@ -272,15 +297,20 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <widget class="QPushButton" name="ButtonToShowDetails">
+         <widget class="QPushButton" name="mButtonToShowDetails">
           <property name="font">
            <font>
             <family>Cambria</family>
             <pointsize>16</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
           </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>Details</string>
@@ -288,15 +318,20 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="ButtonToShow5DayInfo">
+         <widget class="QPushButton" name="mButtonToShow5DayInfo">
           <property name="font">
            <font>
             <family>Cambria</family>
             <pointsize>16</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
           </property>
           <property name="cursor">
            <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>5 Day Info</string>

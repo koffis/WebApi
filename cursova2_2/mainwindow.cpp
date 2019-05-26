@@ -10,12 +10,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    this->setStyleSheet("background-image:url(fon_svet_polosy_pyatna_odnotonnyy_43981_2560x1440.jpg)");
 
-    connect(ui->ButtonToShow5DayInfo, &QPushButton::clicked
+
+    connect(ui->mButtonToShow5DayInfo, &QPushButton::clicked
             , this,&MainWindow::showDaysInfo);
 
-    connect(ui->ButtonToShowDetails, &QPushButton::clicked
+    connect(ui->mButtonToShowDetails, &QPushButton::clicked
             , this,&MainWindow::showDetailsInfo);
 
     QPixmap pix("001-snow.png");
@@ -25,6 +25,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->SkyInfo_MainForm_3->setPixmap(pix);
     ui->SkyInfo_MainForm_3->repaint();
     ui->SkyInfo_MainForm_3->setPixmap(pix);
+
+    QPixmap logo("logo.png");
+    QSize logoSize(200, 200);
+    logo = logo.scaled(logoSize,Qt::KeepAspectRatio);
+
+    ui->mLogoImage->setPixmap(logo);
+    ui->mLogoImage->repaint();
+    ui->mLogoImage->setPixmap(logo);
 }
 
 MainWindow::~MainWindow()

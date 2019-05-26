@@ -13,24 +13,18 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_6">
      <item>
-      <spacer name="verticalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
+      <widget class="QLabel" name="mLogoDaysInfo">
+       <property name="text">
+        <string>TextLabel</string>
        </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Maximum</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>70</height>
-        </size>
-       </property>
-      </spacer>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="Country_DetailsForm">
@@ -95,7 +89,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="MondayLable_2">
+      <widget class="QLabel" name="mDay1Lable">
        <property name="font">
         <font>
          <family>Cambria</family>
@@ -115,7 +109,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="Day1Temp_DetailsForm_2">
+      <widget class="QLabel" name="mDay1TempLable">
        <property name="font">
         <font>
          <family>IrisUPC</family>
@@ -134,6 +128,9 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>TextLabel</string>
@@ -166,7 +163,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="TuesdayLable_2">
+      <widget class="QLabel" name="mDay2Lable">
        <property name="font">
         <font>
          <family>Cambria</family>
@@ -186,7 +183,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="Day2Temp_DetailsForm_2">
+      <widget class="QLabel" name="mDay2TempLable">
        <property name="font">
         <font>
          <family>IrisUPC</family>
@@ -231,7 +228,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="WednesdayLable_2">
+      <widget class="QLabel" name="mDay3Lable">
        <property name="font">
         <font>
          <family>Cambria</family>
@@ -251,7 +248,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="Day3Temp_DetailsForm_2">
+      <widget class="QLabel" name="mDay3TempLable">
        <property name="font">
         <font>
          <family>IrisUPC</family>
@@ -296,7 +293,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="ThursdayLable_2">
+      <widget class="QLabel" name="mDay4Lable">
        <property name="font">
         <font>
          <family>Cambria</family>
@@ -316,7 +313,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_19">
+      <widget class="QLabel" name="mDay4TempLable">
        <property name="font">
         <font>
          <family>IrisUPC</family>
@@ -361,7 +358,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="FridayLable_2">
+      <widget class="QLabel" name="mDay5Lable">
        <property name="font">
         <font>
          <family>Cambria</family>
@@ -381,7 +378,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="label_21">
+      <widget class="QLabel" name="mDay5TempLable">
        <property name="font">
         <font>
          <family>IrisUPC</family>

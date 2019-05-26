@@ -7,6 +7,14 @@ Details::Details(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    QPixmap logo("logo.png");
+    QSize logoSize(100, 100);
+    logo = logo.scaled(logoSize,Qt::KeepAspectRatio);
+
+    ui->mLogoDetails->setPixmap(logo);
+    ui->mLogoDetails->repaint();
+    ui->mLogoDetails->setPixmap(logo);
+
     QPixmap pix("001-snow.png");
     QSize PicSize(50, 50);
     pix = pix.scaled(PicSize,Qt::KeepAspectRatio);
