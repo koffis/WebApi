@@ -9,6 +9,9 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QDebug>
+#include <QSet>
+#include <QVector>
+#include <algorithm>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -32,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->SkyInfo_MainForm_3->repaint();
     ui->SkyInfo_MainForm_3->setPixmap(pix);
 
-    QPixmap logo("logo.png");
+    QPixmap logo("logo.jpg");
     QSize logoSize(200, 200);
     logo = logo.scaled(logoSize,Qt::KeepAspectRatio);
 
@@ -43,7 +46,14 @@ MainWindow::MainWindow(QWidget *parent) :
     addCountry();
 
     connect(ui->mChooseCountryComboBx, &QComboBox::currentTextChanged,this,&MainWindow::addAllCities);
+    connect(ui->mChooseCityComboBox, &QComboBox::currentTextChanged,this,&MainWindow::cityChanged);
 
+    netwMan = new QNetworkAccessManager(this);
+        connect(netwMan,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_netwMan(QNetworkReply*)));
+
+       request.setUrl(QUrl("http://api.openweathermap.org/data/2.5/weather?id=2172797&APPID=4b18a4c9cfae7c4328275a70a1a25d49"));
+
+        connect(ui->mChooseCityComboBox, &QComboBox::currentTextChanged,this,&MainWindow::sendReq);
 }
 
 MainWindow::~MainWindow()
@@ -67,14 +77,45 @@ void MainWindow::addCountry()
     foreach (const QJsonValue & v, array)
          lCountry.insert(v.toObject().value("country").toString());
 
+    QVector<QString> temp;
+
     for(auto element : lCountry)
+       temp.push_back(element);
+
+    std::sort(temp.begin(),temp.end());
+
+    for(auto element : temp)
         ui->mChooseCountryComboBx->addItem(element);
+}
+
+void MainWindow::sendReq()
+{
+    qDebug()<<"OK";
+    netwMan->get(request);
+}
+
+void MainWindow::slot_netwMan(QNetworkReply *rep)
+{
+    rep->waitForReadyRead(1000);
+
+    doc = QJsonDocument::fromJson(rep->readAll(), &docEr);
+    if (docEr.errorString()=="no error occurred")
+    {
+    temp = doc.object().value("main").toObject();
+
+    qDebug() << "Temp: " << temp.value("temp"). toDouble()-273;
+    qDebug()<<"Data: " <<QDateTime::currentDateTime().date();
+    qDebug()<<"Time: "<<QDateTime::currentDateTime().time().toString();
+    }
+
+    rep->deleteLater();
 }
 
 void MainWindow::addAllCities(const QString &text)
 {
     qDebug()<<text;
     mCountry = text;
+
     QFile file("city.list.json");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     QByteArray jsonData = file.readAll();
@@ -83,19 +124,49 @@ void MainWindow::addAllCities(const QString &text)
     QJsonDocument document = QJsonDocument::fromJson(jsonData);
     QJsonObject object = document.object();
 
-    QSet<QString> lCity;
+    QVector<QString> lCity;
     QJsonValue value = object.value("cities");
     QJsonArray array = value.toArray();
     foreach (const QJsonValue & v, array)
     {
         if(mCountry == v.toObject().value("country").toString())
         {
-            lCity.insert(v.toObject().value("name").toString());
+            lCity.push_back(v.toObject().value("name").toString());
         }
     }
+        std::sort(lCity.begin(),lCity.end());
 
     for(auto element : lCity)
         ui->mChooseCityComboBox->addItem(element);
+}
+
+void MainWindow::cityChanged(const QString &text)
+{
+    qDebug()<<text;
+    mCity = text;
+    QFile file("city.list.json");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    QByteArray jsonData = file.readAll();
+    file.close();
+
+    QJsonDocument document = QJsonDocument::fromJson(jsonData);
+    QJsonObject object = document.object();
+
+    QJsonValue value = object.value("cities");
+    QJsonArray array = value.toArray();
+    foreach (const QJsonValue & v, array)
+    {
+        if(mCity == v.toObject().value("name").toString())
+        {
+            int temp = v.toObject().value("id").toInt();
+            mCurrentCityID = QString::number(temp);
+            break;
+        }
+    }
+
+    qDebug()<<mCurrentCityID;
+
+
 }
 
 void MainWindow::showDaysInfo()
