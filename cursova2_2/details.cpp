@@ -1,11 +1,13 @@
 #include "details.h"
 #include "ui_details.h"
 
-Details::Details(QString index,QWidget *parent) :
+Details::Details(QString index, QString cityName, QString countryName, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Details)
 {
     ui->setupUi(this);
+    ui->mDetailsCityTextLable->setText(cityName);
+    ui->mDetailsCountryTextLable->setText(countryName);
     mID = index;
 
     QPixmap logo("logo.png");
@@ -65,6 +67,7 @@ Details::Details(QString index,QWidget *parent) :
     sendReq();
 }
 
+
 Details::~Details()
 {
     delete netwMan;
@@ -120,13 +123,7 @@ void Details::slot_netwMan(QNetworkReply *rep)
 
  }
 
-// for(auto a : data)
-// {
-//     for(auto b : a)
-//     {
-//         qDebug()<<b;
-//     }
-// }
+
 
  ui->mDetailsTemp1Lable->setText(data[0][0]);
  ui->mPreassure1InfoLable->setText(data[0][1]);

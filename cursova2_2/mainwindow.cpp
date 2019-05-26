@@ -177,7 +177,7 @@ void MainWindow::showDaysInfo()
 
 void MainWindow::showDetailsInfo()
 {
-  Details lDetailsInfo(mCurrentCityID);
+  Details lDetailsInfo(mCurrentCityID,mCity,mCountry);
   lDetailsInfo.setModal(true);
   lDetailsInfo.exec();
 }

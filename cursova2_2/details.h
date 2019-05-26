@@ -15,7 +15,7 @@ class Details : public QDialog
     Q_OBJECT
 
 public:
-    explicit Details(QString index,QWidget *parent = nullptr);
+    explicit Details(QString index,QString cityName,QString countyName,QWidget *parent = nullptr);
     ~Details();
 
 private:
