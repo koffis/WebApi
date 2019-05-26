@@ -51,9 +51,6 @@ MainWindow::MainWindow(QWidget *parent) :
     netwMan = new QNetworkAccessManager(this);
         connect(netwMan,SIGNAL(finished(QNetworkReply*)),this,SLOT(slot_netwMan(QNetworkReply*)));
 
-       request.setUrl(QUrl("http://api.openweathermap.org/data/2.5/weather?id=2172797&APPID=4b18a4c9cfae7c4328275a70a1a25d49"));
-
-        connect(ui->mChooseCityComboBox, &QComboBox::currentTextChanged,this,&MainWindow::sendReq);
 }
 
 MainWindow::~MainWindow()
@@ -104,8 +101,11 @@ void MainWindow::slot_netwMan(QNetworkReply *rep)
     temp = doc.object().value("main").toObject();
 
     qDebug() << "Temp: " << temp.value("temp"). toDouble()-273;
-    qDebug()<<"Data: " <<QDateTime::currentDateTime().date();
-    qDebug()<<"Time: "<<QDateTime::currentDateTime().time().toString();
+    ui->CurrentTemperatureMainWindow_3->setText(QString::number((temp.value("temp").toDouble()) - 273) + " °C");
+
+    temp = doc.object().value("wind").toObject();
+    ui->WindWtrengthInfo_MainForm_3->setText(QString::number(temp.value("speed").toDouble())+ " m/s");
+
     }
 
     rep->deleteLater();
@@ -120,6 +120,8 @@ void MainWindow::addAllCities(const QString &text)
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     QByteArray jsonData = file.readAll();
     file.close();
+
+    ui->mChooseCityComboBox->clear();
 
     QJsonDocument document = QJsonDocument::fromJson(jsonData);
     QJsonObject object = document.object();
@@ -165,6 +167,12 @@ void MainWindow::cityChanged(const QString &text)
     }
 
     qDebug()<<mCurrentCityID;
+
+    QString url = "http://api.openweathermap.org/data/2.5/weather?id="+mCurrentCityID+"&APPID=4b18a4c9cfae7c4328275a70a1a25d49";
+    request.setUrl(url);
+
+    sendReq();
+   // connect(ui->mChooseCityComboBox, &QComboBox::currentTextChanged,this,&MainWindow::sendReq);
 
 
 }
