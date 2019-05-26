@@ -9,8 +9,11 @@
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
-#include <QTimer>
 #include <QDebug>
+#include <QVector>
+#include <QPair>
+#include <QMap>
+
 namespace Ui
 {
 class MainWindow;
@@ -46,6 +49,7 @@ private:
     QNetworkAccessManager* netwMan;
     QNetworkRequest request;
 
+    QVector<QPair<int,QString>> mCityIDMap;
 };
 
 #endif // MAINWINDOW_H

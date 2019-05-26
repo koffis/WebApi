@@ -1,7 +1,7 @@
 #include "daysinfo.h"
 #include "ui_daysinfo.h"
 
-DaysInfo::DaysInfo(QWidget *parent) :
+DaysInfo::DaysInfo(const QString &index,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DaysInfo)
 {
